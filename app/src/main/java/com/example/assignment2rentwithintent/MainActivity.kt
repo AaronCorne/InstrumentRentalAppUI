@@ -21,7 +21,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         val image: ImageView = findViewById(R.id.test1)
-        image.setImageResource(R.drawable.ic_launcher_background)
+        image.setImageResource(R.drawable.guitar)
 
         image.setOnClickListener{
             val music= MusicalEquipment("guitar",3.5f, true,55)
