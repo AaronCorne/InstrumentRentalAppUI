@@ -9,14 +9,12 @@
 
     <ImageView
         android:id="@+id/test1"
-        android:layout_width="380dp"
-        android:layout_height="425dp"
+        android:layout_width="323dp"
+        android:layout_height="353dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.567"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.498"
         tools:srcCompat="@tools:sample/avatars" />
 
     <Switch
