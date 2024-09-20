@@ -15,29 +15,35 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/itemName"
+        app:layout_constraintVertical_bias="0.378"
         tools:srcCompat="@tools:sample/avatars" />
 
     <Switch
         android:id="@+id/switch1"
-        android:layout_width="105dp"
-        android:layout_height="50dp"
-        android:text="Switch"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.901"
+        android:layout_width="89dp"
+        android:layout_height="63dp"
+        android:orientation="horizontal"
+        android:showText="false"
+        android:textAlignment="center"
+        android:thumb="@drawable/custom_thumb"
+        android:track="@drawable/custom_track"
+        app:layout_constraintBottom_toTopOf="@+id/Previous"
+        app:layout_constraintEnd_toEndOf="@+id/itemImg"
+        app:layout_constraintHorizontal_bias="0.057"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.132" />
+        app:layout_constraintVertical_bias="0.559" />
 
     <Button
         android:id="@+id/Next"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Button"
+        android:text="@string/next"
+        android:textAllCaps="false"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.739"
+        app:layout_constraintHorizontal_bias="0.736"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.787" />
@@ -46,7 +52,8 @@
         android:id="@+id/Previous"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Button"
+        android:text="@string/previous"
+        android:textAllCaps="false"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.263"
@@ -58,7 +65,8 @@
         android:id="@+id/itemName"
         android:layout_width="163dp"
         android:layout_height="48dp"
-        android:text="TextView"
+        android:text="@string/name"
+        android:textAlignment="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
@@ -70,7 +78,8 @@
         android:id="@+id/itemPrice"
         android:layout_width="74dp"
         android:layout_height="31dp"
-        android:text="TextView"
+        android:text="@string/price"
+        android:textAlignment="center"
         app:layout_constraintBottom_toTopOf="@+id/itemImg"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
@@ -79,24 +88,37 @@
         app:layout_constraintVertical_bias="0.754" />
 
     <RatingBar
-        android:id="@+id/ratingBar2"
+        android:id="@+id/itemRatingBar"
         android:layout_width="241dp"
         android:layout_height="46dp"
+        android:numStars="5"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/itemImg"
-        app:layout_constraintVertical_bias="0.534" />
+        app:layout_constraintTop_toTopOf="@+id/itemImg"
+        app:layout_constraintVertical_bias="0.833" />
 
     <Button
         android:id="@+id/borrow"
         android:layout_width="115dp"
         android:layout_height="58dp"
-        android:text="Button"
+        android:text="@string/borrow"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.976" />
+        app:layout_constraintTop_toBottomOf="@+id/itemRatingBar"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/switchTxt"
+        android:layout_width="46dp"
+        android:layout_height="55dp"
+        android:text="@string/strap"
+        app:layout_constraintBottom_toBottomOf="@+id/switch1"
+        app:layout_constraintEnd_toEndOf="@+id/itemImg"
+        app:layout_constraintHorizontal_bias="0.052"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/itemImg"
+        app:layout_constraintVertical_bias="1.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

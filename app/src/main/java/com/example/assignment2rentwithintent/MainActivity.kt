@@ -1,8 +1,10 @@
 package com.example.assignment2rentwithintent
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.ImageView
+import android.widget.RatingBar
 import android.widget.Switch
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
@@ -17,6 +19,9 @@ class MainActivity : AppCompatActivity() {
     private lateinit var itemPrice: TextView
     private lateinit var nextBtn: Button
     private lateinit var previousBtn: Button
+    private lateinit var borrowBtn: Button
+    private lateinit var ratingBar: RatingBar
+    private lateinit var strapTxt: TextView
 
     private var currentIndex= 0
 
@@ -30,6 +35,9 @@ class MainActivity : AppCompatActivity() {
         switch=findViewById(R.id.switch1)
         nextBtn=findViewById(R.id.Next)
         previousBtn=findViewById(R.id.Previous)
+        borrowBtn=findViewById(R.id.borrow)
+        ratingBar=findViewById(R.id.itemRatingBar)
+        strapTxt=findViewById(R.id.switchTxt)
 
 
         musicItems= arrayListOf(
@@ -42,12 +50,12 @@ class MainActivity : AppCompatActivity() {
 
         showItem(currentIndex)
 
-        
         switch.setOnCheckedChangeListener{_, isChecked ->
             strapSelect=true
 
         }
 
+        //Next button
         nextBtn.setOnClickListener{
             currentIndex+=1
             if(currentIndex>=musicItems.size){
@@ -56,6 +64,7 @@ class MainActivity : AppCompatActivity() {
             showItem(currentIndex)
         }
 
+        //Previous button
         previousBtn.setOnClickListener{
             currentIndex-=1
             if(currentIndex<0){
@@ -64,20 +73,34 @@ class MainActivity : AppCompatActivity() {
             showItem(currentIndex)
         }
 
+        borrowBtn.setOnClickListener{
+            val intent= Intent(this, SecondActivity::class.java)
+            intent.putExtra("Instrument",musicItems[currentIndex])
+            startActivity(intent)
+        }
+
+
+
 
 
     }
+
+    //functions
     private var strapSelect=false
     fun showItem(index:Int){
         val currentItem= musicItems[index]
         itemName.text= currentItem.name
         itemImg.setImageResource(currentItem.imgID)
+        ratingBar.rating=currentItem.rating
 
          if(currentItem.name=="Guitar" || currentItem.name=="Electric Guitar"){
              switch.isVisible=true
+             strapTxt.isVisible=true
          }
          else{
              switch.isVisible=false
+             strapTxt.isVisible=false
+             
             
          }
         switch.isChecked=false

@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">Assignment 2 Rent with Intent</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+    <string name="borrow">BORROW</string>
+    <string name="strap">Add strap?</string>
+    <string name="name">Item Name:</string>
+    <string name="price">Price</string>
+
 </resources>
