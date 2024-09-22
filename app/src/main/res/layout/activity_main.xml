@@ -30,10 +30,10 @@
         android:track="@drawable/custom_track"
         app:layout_constraintBottom_toTopOf="@+id/Previous"
         app:layout_constraintEnd_toEndOf="@+id/itemImg"
-        app:layout_constraintHorizontal_bias="0.057"
+        app:layout_constraintHorizontal_bias="0.127"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.559" />
+        app:layout_constraintVertical_bias="0.56" />
 
     <Button
         android:id="@+id/Next"
@@ -63,8 +63,10 @@
 
     <TextView
         android:id="@+id/itemName"
-        android:layout_width="163dp"
-        android:layout_height="48dp"
+        android:layout_width="133dp"
+        android:layout_height="31dp"
+
+        android:textColor="@color/white"
         android:text="@string/name"
         android:textAlignment="center"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -76,8 +78,9 @@
 
     <TextView
         android:id="@+id/itemPrice"
-        android:layout_width="74dp"
-        android:layout_height="31dp"
+        android:layout_width="115dp"
+        android:layout_height="48dp"
+
         android:text="@string/price"
         android:textAlignment="center"
         app:layout_constraintBottom_toTopOf="@+id/itemImg"
@@ -100,8 +103,8 @@
 
     <Button
         android:id="@+id/borrow"
-        android:layout_width="115dp"
-        android:layout_height="58dp"
+        android:layout_width="187dp"
+        android:layout_height="64dp"
         android:text="@string/borrow"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -116,9 +119,23 @@
         android:text="@string/strap"
         app:layout_constraintBottom_toBottomOf="@+id/switch1"
         app:layout_constraintEnd_toEndOf="@+id/itemImg"
-        app:layout_constraintHorizontal_bias="0.052"
+        app:layout_constraintHorizontal_bias="0.11"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/itemImg"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintVertical_bias="0.884" />
+
+    <TextView
+        android:id="@+id/credits"
+        android:layout_width="92dp"
+        android:layout_height="28dp"
+        android:background="@color/green"
+        android:text="@string/credits"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toTopOf="@+id/itemImg"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.597"
+        app:layout_constraintStart_toEndOf="@+id/itemName"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.172" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

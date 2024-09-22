@@ -3,53 +3,178 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/cream"
+    >
 
     <TextView
-        android:id="@+id/answer1"
-        android:layout_width="332dp"
-        android:layout_height="106dp"
+        android:id="@+id/name"
+        android:layout_width="167dp"
+        android:layout_height="35dp"
         android:text="TextView"
         android:textAlignment="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.493"
+        app:layout_constraintHorizontal_bias="0.475"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.355" />
+        app:layout_constraintVertical_bias="0.057" />
 
     <ImageView
         android:id="@+id/borrowImg"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="156dp"
+        android:layout_height="155dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/answer1"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.156"
         tools:srcCompat="@tools:sample/avatars" />
 
     <SeekBar
-        android:id="@+id/seekBar2"
-        style="@style/Widget.AppCompat.SeekBar.Discrete"
-        android:layout_width="286dp"
-        android:layout_height="86dp"
-        android:max="10"
-        android:progress="3"
+        android:id="@+id/rent"
+        style="@style/CustomSeekBar"
+        android:layout_width="268dp"
+        android:layout_height="48dp"
+        android:max="4"
+        android:progress="0"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintHorizontal_bias="0.489"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.499" />
+        app:layout_constraintVertical_bias="0.534" />
 
-    <SeekBar
-        android:id="@+id/seekBar3"
-        android:layout_width="299dp"
-        android:layout_height="47dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <TextView
+        android:id="@+id/description"
+        android:layout_width="239dp"
+        android:layout_height="67dp"
+        android:layout_marginTop="36dp"
+        android:text="TextView"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toTopOf="@+id/rent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/name"
+        app:layout_constraintVertical_bias="0.716" />
+
+    <Button
+        android:id="@+id/save"
+        android:layout_width="109dp"
+        android:layout_height="77dp"
+        android:text="@string/save"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.807"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rent"
+        app:layout_constraintVertical_bias="0.69" />
+
+    <Button
+        android:id="@+id/cancel"
+        android:layout_width="109dp"
+        android:layout_height="77dp"
+        android:text="@string/cancel"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/save"
+        app:layout_constraintHorizontal_bias="0.443"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rent"
+        app:layout_constraintVertical_bias="0.69" />
+
+    <CheckBox
+        android:id="@+id/checkBox"
+        android:layout_width="205dp"
+        android:layout_height="58dp"
+        android:text="Terms and Conditions"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.339"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.134" />
+        app:layout_constraintVertical_bias="0.613" />
+
+    <CheckBox
+        android:id="@+id/checkBox2"
+        android:layout_width="158dp"
+        android:layout_height="57dp"
+        android:text="Privacy Policy"
+        app:layout_constraintBottom_toTopOf="@+id/cancel"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.276"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.839" />
+
+    <TextView
+        android:id="@+id/borrowCredit"
+        android:layout_width="86dp"
+        android:layout_height="25dp"
+        android:text="TextView"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.95"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.07" />
+
+    <TextView
+        android:id="@+id/rentTime"
+        android:layout_width="118dp"
+        android:layout_height="44dp"
+        android:text="TextView"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toTopOf="@+id/rent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/description"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <TextView
+        android:id="@+id/recharge"
+        android:layout_width="249dp"
+        android:layout_height="254dp"
+        android:background="@color/purple_700"
+        android:paddingStart="5dp"
+        android:paddingLeft="5dp"
+        android:paddingTop="35dp"
+        android:text="@string/recharge"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.53"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.308" />
+
+    <Button
+        android:id="@+id/rechargeY"
+        android:layout_width="90dp"
+        android:layout_height="51dp"
+        android:text="@string/rechargeY"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/rent"
+        app:layout_constraintEnd_toEndOf="@+id/recharge"
+        app:layout_constraintHorizontal_bias="0.893"
+        app:layout_constraintStart_toStartOf="@+id/description"
+        app:layout_constraintTop_toTopOf="@+id/recharge"
+        app:layout_constraintVertical_bias="0.666" />
+
+    <Button
+        android:id="@+id/rechargeN"
+        android:layout_width="89dp"
+        android:layout_height="54dp"
+        android:text="@string/rechargeN"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/rent"
+        app:layout_constraintEnd_toEndOf="@+id/recharge"
+        app:layout_constraintHorizontal_bias="0.064"
+        app:layout_constraintStart_toStartOf="@+id/recharge"
+        app:layout_constraintTop_toTopOf="@+id/recharge"
+        app:layout_constraintVertical_bias="0.666" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

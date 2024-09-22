@@ -7,6 +7,8 @@ import android.widget.ImageView
 import android.widget.RatingBar
 import android.widget.Switch
 import android.widget.TextView
+import androidx.activity.result.ActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 
@@ -22,8 +24,22 @@ class MainActivity : AppCompatActivity() {
     private lateinit var borrowBtn: Button
     private lateinit var ratingBar: RatingBar
     private lateinit var strapTxt: TextView
+    private lateinit var credits: TextView
+
 
     private var currentIndex= 0
+    var currentCredit=500
+
+    private val secondActivityLauncher=registerForActivityResult(
+        ActivityResultContracts.StartActivityForResult()
+
+    ) { result ->
+        if (result.resultCode == RESULT_OK && result.data != null) {
+            currentCredit = result.data!!.getIntExtra("updateCredit", 500)
+            credits.text = getString(R.string.credits, currentCredit)
+
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,20 +54,23 @@ class MainActivity : AppCompatActivity() {
         borrowBtn=findViewById(R.id.borrow)
         ratingBar=findViewById(R.id.itemRatingBar)
         strapTxt=findViewById(R.id.switchTxt)
+        credits=findViewById(R.id.credits)
+
+
 
 
         musicItems= arrayListOf(
-            MusicalEquipment("Guitar",4.5f,true, 250, R.drawable.guitar),
-            MusicalEquipment("Drums", 3.0f, true, 100,R.drawable.drums),
-            MusicalEquipment("Electric Guitar", 5.0f, true, 350, R.drawable.electric_gtar),
-            MusicalEquipment("Amp", 3.5f, true, 200, R.drawable.amp)
+            MusicalEquipment("Guitar",true,4.5f,true, 250, R.drawable.guitar, "A beautiful hand crafted guitar"),
+            MusicalEquipment("Drums",false, 3.0f, true, 100,R.drawable.drums,"Drums to make you march to the beat"),
+            MusicalEquipment("Electric Guitar", true, 5.0f, true, 350, R.drawable.electric_gtar,"An all time rock and roller"),
+            MusicalEquipment("Amp",false, 3.5f, true, 200, R.drawable.amp, "When you need to turn it up, you get one of these")
 
         )
 
         showItem(currentIndex)
 
         switch.setOnCheckedChangeListener{_, isChecked ->
-            strapSelect=true
+            musicItems[currentIndex].strapSelected=true
 
         }
 
@@ -76,7 +95,9 @@ class MainActivity : AppCompatActivity() {
         borrowBtn.setOnClickListener{
             val intent= Intent(this, SecondActivity::class.java)
             intent.putExtra("Instrument",musicItems[currentIndex])
-            startActivity(intent)
+            intent.putExtra("totalCredits",currentCredit)
+
+            secondActivityLauncher.launch(intent)
         }
 
 
@@ -86,25 +107,25 @@ class MainActivity : AppCompatActivity() {
     }
 
     //functions
-    private var strapSelect=false
+
     fun showItem(index:Int){
         val currentItem= musicItems[index]
         itemName.text= currentItem.name
         itemImg.setImageResource(currentItem.imgID)
         ratingBar.rating=currentItem.rating
+        credits.text =getString(R.string.credits,currentCredit)
 
-         if(currentItem.name=="Guitar" || currentItem.name=="Electric Guitar"){
+         if(currentItem.strapOption){
              switch.isVisible=true
              strapTxt.isVisible=true
+             switch.isChecked=currentItem.strapSelected
          }
          else{
              switch.isVisible=false
              strapTxt.isVisible=false
-             
+
             
          }
-        switch.isChecked=false
-        strapSelect=false
 
     }
 
