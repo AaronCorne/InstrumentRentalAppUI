@@ -10,6 +10,7 @@ import android.widget.TextView
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 
 class MainActivity : AppCompatActivity() {
@@ -30,6 +31,7 @@ class MainActivity : AppCompatActivity() {
     private var currentIndex= 0
     var currentCredit=500
 
+
     private val secondActivityLauncher=registerForActivityResult(
         ActivityResultContracts.StartActivityForResult()
 
@@ -37,6 +39,11 @@ class MainActivity : AppCompatActivity() {
         if (result.resultCode == RESULT_OK && result.data != null) {
             currentCredit = result.data!!.getIntExtra("updateCredit", 500)
             credits.text = getString(R.string.credits, currentCredit)
+            val updatedItem= result.data?.getParcelableExtra<MusicalEquipment>("updatedItem")
+            if(updatedItem!=null){
+                musicItems[currentIndex]=updatedItem
+                showItem(currentIndex)
+            }
 
         }
     }
@@ -60,17 +67,24 @@ class MainActivity : AppCompatActivity() {
 
 
         musicItems= arrayListOf(
-            MusicalEquipment("Guitar",true,4.5f,true, 250, R.drawable.guitar, "A beautiful hand crafted guitar"),
-            MusicalEquipment("Drums",false, 3.0f, true, 100,R.drawable.drums,"Drums to make you march to the beat"),
-            MusicalEquipment("Electric Guitar", true, 5.0f, true, 350, R.drawable.electric_gtar,"An all time rock and roller"),
-            MusicalEquipment("Amp",false, 3.5f, true, 200, R.drawable.amp, "When you need to turn it up, you get one of these")
+            MusicalEquipment("Guitar",true,4.5f,true, 250, R.drawable.guitar, R.drawable.bookedgtar, "A beautiful hand crafted guitar",),
+            MusicalEquipment("Drums",false, 3.0f, true, 100,R.drawable.drums, R.drawable.bookeddrum,"Drums to make you march to the beat"),
+            MusicalEquipment("Electric Guitar", true, 5.0f, true, 350, R.drawable.electric_gtar,R.drawable.bookedelectric,"An all time rock and roller"),
+            MusicalEquipment("Amp",false, 3.5f, true, 200, R.drawable.amp, R.drawable.bookedamp, "When you need to turn it up, you get one of these",)
 
         )
 
         showItem(currentIndex)
 
         switch.setOnCheckedChangeListener{_, isChecked ->
-            musicItems[currentIndex].strapSelected=true
+            if(musicItems[currentIndex].strapOption){
+                musicItems[currentIndex].strapSelected=isChecked
+
+            }
+            else{
+                musicItems[currentIndex].strapSelected=false
+            }
+
 
         }
 
@@ -113,7 +127,15 @@ class MainActivity : AppCompatActivity() {
         itemName.text= currentItem.name
         itemImg.setImageResource(currentItem.imgID)
         ratingBar.rating=currentItem.rating
+        itemPrice.text=getString(R.string.price,currentItem.price)
         credits.text =getString(R.string.credits,currentCredit)
+
+        if(currentItem.itemBooked){
+            itemImg.setImageResource(currentItem.bookedImgId)
+        }
+        else{
+            itemImg.setImageResource(currentItem.imgID)
+        }
 
          if(currentItem.strapOption){
              switch.isVisible=true
@@ -123,10 +145,10 @@ class MainActivity : AppCompatActivity() {
          else{
              switch.isVisible=false
              strapTxt.isVisible=false
+             switch.isChecked=false
 
             
          }
-
     }
 
 }

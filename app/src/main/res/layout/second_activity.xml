@@ -12,6 +12,7 @@
         android:layout_width="167dp"
         android:layout_height="35dp"
         android:text="TextView"
+        style="@style/customText"
         android:textAlignment="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -84,34 +85,36 @@
         app:layout_constraintVertical_bias="0.69" />
 
     <CheckBox
-        android:id="@+id/checkBox"
+        android:id="@+id/termsCheck"
         android:layout_width="205dp"
         android:layout_height="58dp"
-        android:text="Terms and Conditions"
+        android:text="@string/Terms"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.339"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.613" />
+        app:layout_constraintVertical_bias="0.698" />
 
     <CheckBox
-        android:id="@+id/checkBox2"
+        android:id="@+id/privacyCheck"
         android:layout_width="158dp"
         android:layout_height="57dp"
-        android:text="Privacy Policy"
+        android:text="@string/Privacy"
         app:layout_constraintBottom_toTopOf="@+id/cancel"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.276"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.839" />
+        app:layout_constraintVertical_bias="0.948" />
 
     <TextView
         android:id="@+id/borrowCredit"
         android:layout_width="86dp"
         android:layout_height="25dp"
         android:text="TextView"
+        style="@style/customCreditText"
+        android:textAlignment="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.95"
@@ -125,12 +128,12 @@
         android:layout_height="44dp"
         android:text="TextView"
         android:textAlignment="center"
-        app:layout_constraintBottom_toTopOf="@+id/rent"
+        app:layout_constraintBottom_toTopOf="@+id/termsCheck"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/description"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintVertical_bias="0.885" />
 
     <TextView
         android:id="@+id/recharge"
@@ -146,10 +149,9 @@
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.53"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.308" />
+        app:layout_constraintVertical_bias="0.333" />
 
     <Button
         android:id="@+id/rechargeY"
@@ -176,5 +178,18 @@
         app:layout_constraintStart_toStartOf="@+id/recharge"
         app:layout_constraintTop_toTopOf="@+id/recharge"
         app:layout_constraintVertical_bias="0.666" />
+
+    <TextView
+        android:id="@+id/rentText"
+        android:layout_width="111dp"
+        android:layout_height="33dp"
+        android:text="@string/rentTime"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.51"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/description"
+        app:layout_constraintVertical_bias="0.051" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

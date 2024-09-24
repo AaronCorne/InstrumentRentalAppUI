@@ -11,6 +11,9 @@ data class MusicalEquipment(
     val availability: Boolean,
     val price: Int, //this will be the total price for the 12 month rental
     val imgID: Int,
+    val bookedImgId: Int,
     val desc: String,
-    var strapSelected: Boolean=false
+    var strapSelected: Boolean=false,
+    var itemBooked: Boolean=false
+    //var bookedImgID: Int
     ): Parcelable

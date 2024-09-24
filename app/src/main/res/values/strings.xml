@@ -5,16 +5,17 @@
     <string name="borrow">BORROW</string>
     <string name="strap">Add strap?</string>
     <string name="name">Item Name:</string>
-    <string name="price">Starting Price From</string>
+    <string name="price">Price \n %1$d credits</string>
     <string name="credits">Credits: %1$d </string>
     <string name="save">Save</string>
     <string name="cancel">Cancel</string>
     <string name="With_strap">Includes strap</string>
     <string name="Without_strap">Does not include strap</string>
-    <string name="fullDesc">%1$s\n%2$s</string>
+    <string name="fullDesc">%1$s \n %2$s \n %3$d credits</string>
     <string name="recharge">Oops! Looks like you are out of credits. \n \n Would you like to recharge?</string>
     <string name="rechargeY">Yes</string>
     <string name="rechargeN">No</string>
-
-
+    <string name="rentTime">Rent Duration</string>
+    <string name="Terms">Terms and Conditions</string>
+    <string name="Privacy">Privacy Policy</string>
 </resources>

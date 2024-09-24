@@ -23,6 +23,7 @@ class SecondActivity: AppCompatActivity() {
     private lateinit var recharge: TextView
 
 
+
     private var totalCredit=500
     private val rentDuration = listOf("1 month", "3 months", "6 months","9 months", "12 months")
 
@@ -41,6 +42,8 @@ class SecondActivity: AppCompatActivity() {
 
         totalCredit= intent.getIntExtra("totalCredits",500)
 
+
+
         val saveBtn=findViewById<Button>(R.id.save)
         val cancelBtn=findViewById<Button>(R.id.cancel)
         itemImg=findViewById(R.id.borrowImg)
@@ -52,6 +55,7 @@ class SecondActivity: AppCompatActivity() {
         rechargeN=findViewById(R.id.rechargeN)
         rechargeY=findViewById(R.id.rechargeY)
         recharge=findViewById(R.id.recharge)
+
 
         rentTime.text=rentDuration[0]
 
@@ -73,15 +77,15 @@ class SecondActivity: AppCompatActivity() {
         saveBtn.setOnClickListener{ //if the save button is clicked and have enough credits...
             if(totalCredit>= item.price){
                 totalCredit-=item.price
+                item.itemBooked= true
                 Toast.makeText(this, "Successfully borrowed!", Toast.LENGTH_SHORT).show()
                 val resultIntent=intent
                 resultIntent.putExtra("updateCredit", totalCredit)
-                resultIntent.putExtra("rentDuration", rentDuration[seekBar.progress])
+                //resultIntent.putExtra("rentDuration", rentDuration[seekBar.progress])
+                resultIntent.putExtra("updatedItem", item)
                 setResult(RESULT_OK, resultIntent)
 
                 finish()
-
-
 
             }
             else {
@@ -111,6 +115,8 @@ class SecondActivity: AppCompatActivity() {
             }
             val selectedRent=rentDuration[seekBar.progress]
             showDetail(item)
+
+
         }
 
         cancelBtn.setOnClickListener{
@@ -123,7 +129,7 @@ class SecondActivity: AppCompatActivity() {
     }
 
 
-
+    //functions
 
     fun showDetail(music:MusicalEquipment){
         itemName.text=item.name
@@ -132,10 +138,10 @@ class SecondActivity: AppCompatActivity() {
         val strapInfo= if(item.strapSelected){
             getString(R.string.With_strap)
         }else{
-            getString(R.string.Without_strap)
+           ""
         }
 
-        itemDesc.text= getString(R.string.fullDesc,item.desc,strapInfo)
+        itemDesc.text= getString(R.string.fullDesc,item.desc,strapInfo, item.price)
 
 
     }

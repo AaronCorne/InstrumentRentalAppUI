@@ -6,6 +6,37 @@
         <item name="android:thumbTint">@color/teal_700</item>
 
     </style>
+    
+    <style name="customBorrowBtn">
+        <item name="android:textColor">@color/cream</item>
+        <item name="android:background">@color/brown</item>
+    </style>
+
+    <style name="customBtn">
+        <item name="android:textColor">@color/white</item>
+        <item name="android:background">@color/blue1</item>
+    </style>
+
+    <style name="customText">
+        <item name="android:textSize">30sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="customPriceText">
+        <item name="android:textSize">20sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:background">@color/blue1</item>
+    </style>
+
+    <style name="customCreditText">
+        <item name="android:textSize">15sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:background">@color/green</item>
+    </style>
+
+
 
 
 </resources>

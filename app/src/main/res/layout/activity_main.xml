@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:background="@drawable/stage_final"
-    android:layout_height="match_parent">
+    android:textAlignment="center">
 
     <ImageView
         android:id="@+id/itemImg"
@@ -21,8 +21,8 @@
 
     <Switch
         android:id="@+id/switch1"
-        android:layout_width="89dp"
-        android:layout_height="63dp"
+        android:layout_width="96dp"
+        android:layout_height="58dp"
         android:orientation="horizontal"
         android:showText="false"
         android:textAlignment="center"
@@ -37,6 +37,7 @@
 
     <Button
         android:id="@+id/Next"
+        style="@style/customBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/next"
@@ -50,6 +51,7 @@
 
     <Button
         android:id="@+id/Previous"
+        style="@style/customBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/previous"
@@ -63,24 +65,26 @@
 
     <TextView
         android:id="@+id/itemName"
-        android:layout_width="133dp"
-        android:layout_height="31dp"
-
-        android:textColor="@color/white"
+        style="@style/customText"
+        android:layout_width="139dp"
+        android:layout_height="77dp"
         android:text="@string/name"
         android:textAlignment="center"
+        android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.046" />
 
     <TextView
         android:id="@+id/itemPrice"
-        android:layout_width="115dp"
-        android:layout_height="48dp"
-
+        style="@style/customPriceText"
+        android:layout_width="127dp"
+        android:layout_height="63dp"
+        android:includeFontPadding="true"
+        android:padding="2dp"
         android:text="@string/price"
         android:textAlignment="center"
         app:layout_constraintBottom_toTopOf="@+id/itemImg"
@@ -95,6 +99,7 @@
         android:layout_width="241dp"
         android:layout_height="46dp"
         android:numStars="5"
+        android:progressTint="@color/yellow"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -103,39 +108,47 @@
 
     <Button
         android:id="@+id/borrow"
-        android:layout_width="187dp"
-        android:layout_height="64dp"
+        style="@style/customBorrowBtn"
+        android:layout_width="185dp"
+        android:layout_height="55dp"
         android:text="@string/borrow"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.508"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/itemRatingBar"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.407" />
 
     <TextView
         android:id="@+id/switchTxt"
-        android:layout_width="46dp"
-        android:layout_height="55dp"
+        android:layout_width="60dp"
+        android:layout_height="50dp"
         android:text="@string/strap"
+        android:textColor="@color/white"
+        android:textSize="17sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/switch1"
         app:layout_constraintEnd_toEndOf="@+id/itemImg"
-        app:layout_constraintHorizontal_bias="0.11"
+        app:layout_constraintHorizontal_bias="0.115"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/itemImg"
-        app:layout_constraintVertical_bias="0.884" />
+        app:layout_constraintVertical_bias="0.771" />
 
     <TextView
         android:id="@+id/credits"
-        android:layout_width="92dp"
-        android:layout_height="28dp"
-        android:background="@color/green"
+        style="@style/customCreditText"
+        android:layout_width="118dp"
+        android:layout_height="41dp"
+        android:layout_marginRight="10dp"
+        android:padding="8dp"
+        android:paddingRight="3dp"
         android:text="@string/credits"
-        android:textColor="@color/black"
+        android:textAlignment="center"
         app:layout_constraintBottom_toTopOf="@+id/itemImg"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.597"
+        app:layout_constraintHorizontal_bias="0.157"
         app:layout_constraintStart_toEndOf="@+id/itemName"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.172" />
+        app:layout_constraintVertical_bias="0.179" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
