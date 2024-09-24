@@ -15,5 +15,5 @@ data class MusicalEquipment(
     val desc: String,
     var strapSelected: Boolean=false,
     var itemBooked: Boolean=false
-    //var bookedImgID: Int
+
     ): Parcelable

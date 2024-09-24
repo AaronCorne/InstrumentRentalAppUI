@@ -26,6 +26,9 @@
         <activity android:name=".SecondActivity">
 
         </activity>
+        <activity android:name=".DetailsDisplay">
+
+        </activity>
     </application>
 
 </manifest>

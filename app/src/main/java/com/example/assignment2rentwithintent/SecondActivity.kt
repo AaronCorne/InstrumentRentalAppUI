@@ -4,11 +4,13 @@ import android.os.Build
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
+import android.widget.CheckBox
 import android.widget.ImageView
 import android.widget.SeekBar
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.google.android.material.snackbar.Snackbar
 
 class SecondActivity: AppCompatActivity() {
 
@@ -21,8 +23,8 @@ class SecondActivity: AppCompatActivity() {
     private lateinit var rechargeY: Button
     private lateinit var rechargeN: Button
     private lateinit var recharge: TextView
-
-
+    private lateinit var termsCheck: CheckBox
+    private lateinit var privacyCheck: CheckBox
 
     private var totalCredit=500
     private val rentDuration = listOf("1 month", "3 months", "6 months","9 months", "12 months")
@@ -55,9 +57,11 @@ class SecondActivity: AppCompatActivity() {
         rechargeN=findViewById(R.id.rechargeN)
         rechargeY=findViewById(R.id.rechargeY)
         recharge=findViewById(R.id.recharge)
+        termsCheck=findViewById(R.id.termsCheck)
+        privacyCheck=findViewById(R.id.privacyCheck)
 
 
-        rentTime.text=rentDuration[0]
+        rentTime.text=rentDuration[0] //so the slider starts on 1 month of rent
 
         showDetail(item)
 
@@ -73,19 +77,33 @@ class SecondActivity: AppCompatActivity() {
                 //Not needed
             }
         })
+        val parentView=findViewById<View>(R.id.rootLayout)
+
+        if (totalCredit < item.price){
+            Snackbar.make(
+                findViewById(R.id.rootLayout), // Replace with the ID of your root view
+                "Looks like you are out of credits, by pressing SAVE you will be able to recharge credits",
+                Snackbar.LENGTH_LONG).show()
+        }
 
         saveBtn.setOnClickListener{ //if the save button is clicked and have enough credits...
             if(totalCredit>= item.price){
-                totalCredit-=item.price
-                item.itemBooked= true
-                Toast.makeText(this, "Successfully borrowed!", Toast.LENGTH_SHORT).show()
-                val resultIntent=intent
-                resultIntent.putExtra("updateCredit", totalCredit)
-                //resultIntent.putExtra("rentDuration", rentDuration[seekBar.progress])
-                resultIntent.putExtra("updatedItem", item)
-                setResult(RESULT_OK, resultIntent)
+                if(!termsCheck.isChecked || !privacyCheck.isChecked){
+                    Toast.makeText(this, "Please ensure you have checked BOTH the Terms and Privacy checkboxes!", Toast.LENGTH_SHORT).show()
+                }else{
+                    totalCredit-=item.price
+                    item.itemBooked= true
+                    Toast.makeText(this, "Successfully borrowed!", Toast.LENGTH_SHORT).show()
+                    val resultIntent=intent
+                    resultIntent.putExtra("updateCredit", totalCredit)
+                    //resultIntent.putExtra("rentDuration", rentDuration[seekBar.progress])
+                    resultIntent.putExtra("updatedItem", item)
+                    resultIntent.putExtra("selectedRent", rentDuration[seekBar.progress])
+                    setResult(RESULT_OK, resultIntent)
 
-                finish()
+                    finish()
+                }
+
 
             }
             else {
@@ -109,11 +127,7 @@ class SecondActivity: AppCompatActivity() {
                     rechargeY.visibility= View.INVISIBLE
                 }
 
-
-
-
             }
-            val selectedRent=rentDuration[seekBar.progress]
             showDetail(item)
 
 

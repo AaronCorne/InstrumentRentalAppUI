@@ -2,7 +2,7 @@
     <string name="app_name">Assignment 2 Rent with Intent</string>
     <string name="next">Next</string>
     <string name="previous">Previous</string>
-    <string name="borrow">BORROW</string>
+    <string name="borrow">RENT</string>
     <string name="strap">Add strap?</string>
     <string name="name">Item Name:</string>
     <string name="price">Price \n %1$d credits</string>
@@ -11,11 +11,24 @@
     <string name="cancel">Cancel</string>
     <string name="With_strap">Includes strap</string>
     <string name="Without_strap">Does not include strap</string>
-    <string name="fullDesc">%1$s \n %2$s \n %3$d credits</string>
+    <string name="fullDesc">%1$s \n %2$s \n \n %3$d credits</string>
     <string name="recharge">Oops! Looks like you are out of credits. \n \n Would you like to recharge?</string>
     <string name="rechargeY">Yes</string>
     <string name="rechargeN">No</string>
     <string name="rentTime">Rent Duration</string>
     <string name="Terms">Terms and Conditions</string>
     <string name="Privacy">Privacy Policy</string>
+    <string name="Preowned">Preowned</string>
+    <string name="New">New</string>
+    ---------------------------
+    <!--details strings-->
+    <string name="details">DETAILS</string>
+    <string name="detailsName">Name: </string>
+    <string name="detailsDesc">Description</string>
+    <string name="backBtn">GO BACK</string>
+    <string name="detailsPrice">%d credits</string>
+    <string name="rentedItem">Item has been rented</string>
+    <string name="notRentedItem">Item is still available</string>
+
+
 </resources>

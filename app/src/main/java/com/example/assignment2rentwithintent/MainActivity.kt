@@ -2,15 +2,15 @@ package com.example.assignment2rentwithintent
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.RatingBar
 import android.widget.Switch
 import android.widget.TextView
-import androidx.activity.result.ActivityResult
+import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 
 class MainActivity : AppCompatActivity() {
@@ -30,9 +30,10 @@ class MainActivity : AppCompatActivity() {
 
     private var currentIndex= 0
     var currentCredit=500
+    private var selectedRent:String="" //initialise as an empty string
 
 
-    private val secondActivityLauncher=registerForActivityResult(
+    private val activityLauncher=registerForActivityResult( //for when we are sending data and receiving data back
         ActivityResultContracts.StartActivityForResult()
 
     ) { result ->
@@ -40,6 +41,8 @@ class MainActivity : AppCompatActivity() {
             currentCredit = result.data!!.getIntExtra("updateCredit", 500)
             credits.text = getString(R.string.credits, currentCredit)
             val updatedItem= result.data?.getParcelableExtra<MusicalEquipment>("updatedItem")
+            selectedRent= result.data?.getStringExtra("selectedRent")?:"Rent not selected"
+
             if(updatedItem!=null){
                 musicItems[currentIndex]=updatedItem
                 showItem(currentIndex)
@@ -48,13 +51,15 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         itemName=findViewById(R.id.itemName)
         itemImg=findViewById(R.id.itemImg)
-        itemPrice=findViewById(R.id.itemPrice)
+        itemPrice=findViewById(R.id.detailsPrice)
         switch=findViewById(R.id.switch1)
         nextBtn=findViewById(R.id.Next)
         previousBtn=findViewById(R.id.Previous)
@@ -75,6 +80,14 @@ class MainActivity : AppCompatActivity() {
         )
 
         showItem(currentIndex)
+
+
+        itemImg.setOnClickListener{
+            val intent= Intent(this, DetailsDisplay::class.java)
+            intent.putExtra("Instrument",musicItems[currentIndex])
+            intent.putExtra("selectedRent",selectedRent)
+            activityLauncher.launch(intent)
+        }
 
         switch.setOnCheckedChangeListener{_, isChecked ->
             if(musicItems[currentIndex].strapOption){
@@ -107,15 +120,20 @@ class MainActivity : AppCompatActivity() {
         }
 
         borrowBtn.setOnClickListener{
-            val intent= Intent(this, SecondActivity::class.java)
-            intent.putExtra("Instrument",musicItems[currentIndex])
-            intent.putExtra("totalCredits",currentCredit)
+            if(borrowBtn.isEnabled){
+                val intent= Intent(this, SecondActivity::class.java)
+                intent.putExtra("Instrument",musicItems[currentIndex])
+                intent.putExtra("totalCredits",currentCredit)
 
-            secondActivityLauncher.launch(intent)
+                activityLauncher.launch(intent)
+            }
+            else{
+                Toast.makeText(this,"Looks like this has already been rented!", Toast.LENGTH_SHORT).show()
+            }
+
+
+
         }
-
-
-
 
 
     }
@@ -132,9 +150,16 @@ class MainActivity : AppCompatActivity() {
 
         if(currentItem.itemBooked){
             itemImg.setImageResource(currentItem.bookedImgId)
+            borrowBtn.isEnabled=false
+            borrowBtn.visibility=View.INVISIBLE
+
+
+
         }
         else{
             itemImg.setImageResource(currentItem.imgID)
+            borrowBtn.isEnabled=true
+            borrowBtn.visibility=View.VISIBLE
         }
 
          if(currentItem.strapOption){

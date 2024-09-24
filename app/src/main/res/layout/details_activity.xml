@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/cream">
+
+
+    <TextView
+        android:id="@+id/details"
+        android:layout_width="370dp"
+        android:layout_height="49dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="44dp"
+        android:text="@string/details"
+        style="@style/customDesc2"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/detailsName"
+        style="@style/customDesc2"
+        android:layout_width="370dp"
+        android:layout_height="49dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="8dp"
+        android:text="@string/detailsName" />
+
+
+    <TextView
+        android:id="@+id/detailsDesc"
+        style="@style/customDesc2"
+        android:layout_width="370dp"
+        android:layout_height="49dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="8dp"
+        android:text="@string/detailsDesc" />
+    <TextView
+        android:id="@+id/strap"
+        android:layout_width="370dp"
+        android:layout_height="49dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        style="@style/customDesc2"
+        android:layout_marginBottom="8dp"
+        />
+
+    <TextView
+        android:id="@+id/detailsPrice"
+        android:layout_width="370dp"
+        android:layout_height="49dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="8dp"
+        style="@style/customDesc2"
+        android:text="@string/detailsPrice" />
+
+    <TextView
+        android:id="@+id/bookingStatus"
+        android:layout_width="370dp"
+        android:layout_height="49dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="8dp"
+        style="@style/customDesc2"
+         />
+
+    <TextView
+        android:id="@+id/duration"
+        android:layout_width="370dp"
+        android:layout_height="49dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="8dp"
+        style="@style/customDesc2"
+        />
+
+
+    <Button
+        android:id="@+id/backBtn"
+        style="@style/customBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:text="@string/backBtn"
+        />
+
+
+</LinearLayout>
