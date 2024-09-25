@@ -2,6 +2,9 @@ package com.example.assignment2rentwithintent
 
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
+import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.ImageView
@@ -11,7 +14,9 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
+import com.google.android.material.snackbar.Snackbar
 
 class MainActivity : AppCompatActivity() {
 
@@ -43,6 +48,10 @@ class MainActivity : AppCompatActivity() {
             val updatedItem= result.data?.getParcelableExtra<MusicalEquipment>("updatedItem")
             selectedRent= result.data?.getStringExtra("selectedRent")?:"Rent not selected"
 
+            Log.d("MainActivity", "Received updated credit: $currentCredit")
+            Log.d("MainActivity", "Received updated item: $updatedItem")
+            Log.d("MainActivity", "Received selected rent duration: $selectedRent")
+
             if(updatedItem!=null){
                 musicItems[currentIndex]=updatedItem
                 showItem(currentIndex)
@@ -68,17 +77,23 @@ class MainActivity : AppCompatActivity() {
         strapTxt=findViewById(R.id.switchTxt)
         credits=findViewById(R.id.credits)
 
+        Handler(Looper.getMainLooper()).postDelayed(
+            {
+                Snackbar.make(itemImg, "Click the image to view details!", Snackbar.LENGTH_LONG)
+                    .setBackgroundTint(ContextCompat.getColor(this,R.color.blue1)).show()
+            }, 2000) // Delay in milliseconds
+
 
 
 
         musicItems= arrayListOf(
-            MusicalEquipment("Guitar",true,4.5f,true, 250, R.drawable.guitar, R.drawable.bookedgtar, "A beautiful hand crafted guitar",),
-            MusicalEquipment("Drums",false, 3.0f, true, 100,R.drawable.drums, R.drawable.bookeddrum,"Drums to make you march to the beat"),
-            MusicalEquipment("Electric Guitar", true, 5.0f, true, 350, R.drawable.electric_gtar,R.drawable.bookedelectric,"An all time rock and roller"),
-            MusicalEquipment("Amp",false, 3.5f, true, 200, R.drawable.amp, R.drawable.bookedamp, "When you need to turn it up, you get one of these",)
+            MusicalEquipment("Guitar",true,4.5f, 250, R.drawable.guitar, R.drawable.bookedgtar, "A beautiful hand crafted guitar",),
+            MusicalEquipment("Drums",false, 3.0f,  100,R.drawable.drums, R.drawable.bookeddrum,"Drums to make you march to the beat"),
+            MusicalEquipment("Electric Guitar", true, 5.0f,  350, R.drawable.electric_gtar,R.drawable.bookedelectric,"An all time rock and roller"),
+            MusicalEquipment("Amp",false, 3.5f, 200, R.drawable.amp, R.drawable.bookedamp, "When you need to turn it up, you get one of these",)
 
         )
-
+        Log.d("MainActivity", "Music items initialised: $musicItems")
         showItem(currentIndex)
 
 
@@ -86,6 +101,7 @@ class MainActivity : AppCompatActivity() {
             val intent= Intent(this, DetailsDisplay::class.java)
             intent.putExtra("Instrument",musicItems[currentIndex])
             intent.putExtra("selectedRent",selectedRent)
+            Log.d("MainActivity", "Starting DetailsDisplay activity for:${musicItems[currentIndex]}")
             activityLauncher.launch(intent)
         }
 
@@ -107,6 +123,7 @@ class MainActivity : AppCompatActivity() {
             if(currentIndex>=musicItems.size){
                 currentIndex=0
             }
+            Log.d("MainActivity", "Showing next item: ${musicItems[currentIndex]}")
             showItem(currentIndex)
         }
 
@@ -116,6 +133,7 @@ class MainActivity : AppCompatActivity() {
             if(currentIndex<0){
                 currentIndex= musicItems.size-1
             }
+            Log.d("MainActivity", "Showing previous item: ${musicItems[currentIndex]}")
             showItem(currentIndex)
         }
 
@@ -124,7 +142,7 @@ class MainActivity : AppCompatActivity() {
                 val intent= Intent(this, SecondActivity::class.java)
                 intent.putExtra("Instrument",musicItems[currentIndex])
                 intent.putExtra("totalCredits",currentCredit)
-
+                Log.d("MainActivity", "Starting SecondActivity for: ${musicItems[currentIndex]}")
                 activityLauncher.launch(intent)
             }
             else{

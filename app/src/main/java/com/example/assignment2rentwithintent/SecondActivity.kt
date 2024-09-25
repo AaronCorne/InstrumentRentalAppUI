@@ -2,6 +2,9 @@ package com.example.assignment2rentwithintent
 
 import android.os.Build
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
+import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.CheckBox
@@ -43,6 +46,8 @@ class SecondActivity: AppCompatActivity() {
         }
 
         totalCredit= intent.getIntExtra("totalCredits",500)
+        Log.d("SecondActivity", "Instrument received: $item")
+        Log.d("SecondActivity", "Total credits: $totalCredit")
 
 
 
@@ -63,7 +68,7 @@ class SecondActivity: AppCompatActivity() {
 
         rentTime.text=rentDuration[0] //so the slider starts on 1 month of rent
 
-        showDetail(item)
+        showDetail()
 
         seekBar.setOnSeekBarChangeListener(object: SeekBar.OnSeekBarChangeListener {
             override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
@@ -77,14 +82,21 @@ class SecondActivity: AppCompatActivity() {
                 //Not needed
             }
         })
-        val parentView=findViewById<View>(R.id.rootLayout)
+
 
         if (totalCredit < item.price){
-            Snackbar.make(
-                findViewById(R.id.rootLayout), // Replace with the ID of your root view
-                "Looks like you are out of credits, by pressing SAVE you will be able to recharge credits",
-                Snackbar.LENGTH_LONG).show()
+            Handler(Looper.getMainLooper()).postDelayed(
+                {
+                    Snackbar.make(
+                        findViewById(R.id.rootLayout),
+                        "Looks like you are out of credits, by pressing SAVE you will be able to recharge credits",
+                        Snackbar.LENGTH_LONG
+                    ).setBackgroundTint(getColor(R.color.blue1))
+                        .show()
+                },1000)
+            Log.d("SecondActivity", "Not enough credits to rent: $item")
         }
+
 
         saveBtn.setOnClickListener{ //if the save button is clicked and have enough credits...
             if(totalCredit>= item.price){
@@ -93,6 +105,7 @@ class SecondActivity: AppCompatActivity() {
                 }else{
                     totalCredit-=item.price
                     item.itemBooked= true
+                    Log.d("SecondActivity", "Instrument rented successfully: $item")
                     Toast.makeText(this, "Successfully borrowed!", Toast.LENGTH_SHORT).show()
                     val resultIntent=intent
                     resultIntent.putExtra("updateCredit", totalCredit)
@@ -112,11 +125,13 @@ class SecondActivity: AppCompatActivity() {
                 recharge.visibility= View.VISIBLE
                 rechargeN.visibility= View.VISIBLE
                 rechargeY.visibility= View.VISIBLE
+                Log.d("SecondActivity", "Recharge for credits to rent $item")
 
                 rechargeN.setOnClickListener{
                     recharge.visibility= View.INVISIBLE
                     rechargeN.visibility= View.INVISIBLE
                     rechargeY.visibility= View.INVISIBLE
+                    Log.d("SecondActivity", "Recharge declined for: $item")
                 }
 
                 rechargeY.setOnClickListener{
@@ -125,16 +140,20 @@ class SecondActivity: AppCompatActivity() {
                     recharge.visibility= View.INVISIBLE
                     rechargeN.visibility= View.INVISIBLE
                     rechargeY.visibility= View.INVISIBLE
+                    Toast.makeText(this, "Recharged!", Toast.LENGTH_SHORT).show()
+                    Log.d("SecondActivity", "Recharge successful for: $item")
                 }
 
             }
-            showDetail(item)
+            showDetail()
 
 
         }
 
         cancelBtn.setOnClickListener{
             finish()
+            Toast.makeText(this, "Cancelled!", Toast.LENGTH_SHORT).show()
+            Log.d("SecondActivity", "Rental cancelled for: $item")
         }
 
 
@@ -145,7 +164,7 @@ class SecondActivity: AppCompatActivity() {
 
     //functions
 
-    fun showDetail(music:MusicalEquipment){
+    fun showDetail() {
         itemName.text=item.name
         itemImg.setImageResource(item.imgID)
         itemCredit.text=getString(R.string.credits,totalCredit)

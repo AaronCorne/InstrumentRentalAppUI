@@ -2,6 +2,7 @@ package com.example.assignment2rentwithintent
 
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.TextView
@@ -46,6 +47,9 @@ class DetailsDisplay:AppCompatActivity() {
         }
 
         selectedRent=intent.getStringExtra("selectedRent")?: "No rent selected"
+
+        Log.d("DetailsDisplay", "Instrument received: $item")
+        Log.d("DetailsDisplay", "Selected rent duration: $selectedRent")
         showDetail(item)
 
         backBtn.setOnClickListener{
@@ -58,7 +62,7 @@ class DetailsDisplay:AppCompatActivity() {
 
     }
 
-    fun showDetail(music:MusicalEquipment){
+    fun showDetail(musiTc:MusicalEquipment){
         detailsName.text=item.name
         detailsDesc.text=item.desc
         detailsPrice.text=getString(R.string.price,item.price)
@@ -67,11 +71,13 @@ class DetailsDisplay:AppCompatActivity() {
         if(item.itemBooked){
             bookingStatus.text=getString(R.string.rentedItem)
             duration.text=selectedRent
+            Log.d("DetailsDisplay", "Instrument is already booked")
 
 
         }
         else{
             bookingStatus.text=getString(R.string.notRentedItem)
+            Log.d("DetailsDisplay", "Instrument is available for rent")
 
         }
 
