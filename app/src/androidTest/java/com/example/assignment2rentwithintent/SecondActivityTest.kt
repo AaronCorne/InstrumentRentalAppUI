@@ -1,18 +1,22 @@
 package com.example.assignment2rentwithintent
 
 import android.content.Intent
+import androidx.test.core.app.ActivityScenario
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.action.ViewActions.swipeRight
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.matcher.ViewMatchers.isDisplayed
+import androidx.test.espresso.matcher.ViewMatchers.isEnabled
 import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.espresso.matcher.ViewMatchers.withText
 import androidx.test.ext.junit.rules.ActivityScenarioRule
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.filters.LargeTest
+import org.hamcrest.Matchers.containsString
 import org.hamcrest.Matchers.not
+import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -21,19 +25,58 @@ import org.junit.runner.RunWith
 @RunWith(AndroidJUnit4::class)
 class SecondActivityTest {
 
-    @Rule
-    @JvmField
-    var sActivityScenarioRule = ActivityScenarioRule(SecondActivity::class.java)
+    private lateinit var testItem: MusicalEquipment
+    private var totalCredits = 500
 
     @Test
-    fun testDetailsPass(){
+    fun testDetailsPass() {
+        testItem=MusicalEquipment("test guitar", false,3.5f,250,R.drawable.guitar,R.drawable.bookedgtar,"test of the guitar",true)
+        val intent =
+            Intent(ApplicationProvider.getApplicationContext(), SecondActivity::class.java).apply {
+                putExtra("Instrument", testItem)
+                putExtra("totalCredits", totalCredits)
+            }
+        ActivityScenario.launch<SecondActivity>(intent)
+
         onView(withId(R.id.borrowImg)).check(matches(isDisplayed()))
         onView(withId(R.id.name)).check(matches(isDisplayed()))
         onView(withId(R.id.description)).check(matches(isDisplayed()))
-
     }
 
+    @Test
+    fun testInsufficientDetails() {
+        testItem=MusicalEquipment("test guitar", false,3.5f,250,R.drawable.guitar,R.drawable.bookedgtar,"test of the guitar",true)
+        val intent = Intent(ApplicationProvider.getApplicationContext(), SecondActivity::class.java).apply {
+            putExtra("Instrument", testItem)
+            putExtra("totalCredits", 100)
+        }
+        ActivityScenario.launch<SecondActivity>(intent)
 
+        onView(withId(R.id.borrowCredit)).check(matches(withText("Credits: 100")))
+        onView(withId(R.id.termsCheck)).perform(click())
+        onView(withId(R.id.privacyCheck)).perform(click())
+        onView(withId(R.id.save)).perform(click())
+        onView(withId(R.id.recharge)).check(matches(isDisplayed()))
+        onView(withId(R.id.rechargeY)).check(matches(isDisplayed()))
+        onView(withId(R.id.rechargeN)).check(matches(isDisplayed()))
+    }
+
+    @Test
+    fun testRecharge() {
+        testItem=MusicalEquipment("test guitar", false,3.5f,250,R.drawable.guitar,R.drawable.bookedgtar,"test of the guitar",true)
+        val intent = Intent(ApplicationProvider.getApplicationContext(), SecondActivity::class.java).apply {
+            putExtra("Instrument", testItem)
+            putExtra("totalCredits", 100)
+        }
+        ActivityScenario.launch<SecondActivity>(intent)
+
+        onView(withId(R.id.save)).perform(click())
+        onView(withId(R.id.rechargeY)).perform(click())
+        onView(withId(R.id.borrowCredit)).check(matches(withText("Credits: 500")))
+        onView(withId(R.id.recharge)).check(matches(not(isDisplayed())))
+        onView(withId(R.id.rechargeY)).check(matches(not(isDisplayed())))
+        onView(withId(R.id.rechargeN)).check(matches(not(isDisplayed())))
+    }
 
 
 

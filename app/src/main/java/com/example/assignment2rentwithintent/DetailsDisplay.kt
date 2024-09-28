@@ -62,7 +62,7 @@ class DetailsDisplay:AppCompatActivity() {
 
     }
 
-    fun showDetail(musiTc:MusicalEquipment){
+    fun showDetail(music:MusicalEquipment){
         detailsName.text=item.name
         detailsDesc.text=item.desc
         detailsPrice.text=getString(R.string.price,item.price)

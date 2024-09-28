@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Assignment 2 Rent with Intent</string>
+    <string name="next">Proximo</string>
+    <string name="previous">Previo</string>
+    <string name="borrow">Alquilar</string>
+    <string name="strap">Agregar correa?</string>
+    <string name="name">Nombre de articulo:</string>
+    <string name="price">Precio %1$d creditos</string>
+    <string name="credits">Creditos %1$d</string>
+    <string name="save">ahorrar</string>
+    <string name="cancel">Cancelar</string>
+    <string name="With_strap">Con correa</string>
+    <string name="Without_strap">Sin correa</string>
+    <string name="fullDesc">%1$s   %2$s     %3$d creditos</string>
+    <string name="recharge">¡Ups! Parece que te has quedado sin créditos.     ¿Quieres recargar?</string>
+    <string name="rechargeY">Si</string>
+    <string name="rechargeN">No</string>
+    <string name="rentTime">duracion del alquilar</string>
+    <string name="Terms">Terminos y Condiciones</string>
+    <string name="Privacy">Politica de Privicidad</string>
+    <string name="Preowned">Seminuevo</string>
+    <string name="New">Nuevo</string>
+    <string name="details">Detalles</string>
+    <string name="detailsName">Nombre:</string>
+    <string name="detailsDesc">Descripcion</string>
+    <string name="backBtn">Volver</string>
+    <string name="detailsPrice">%d creditos</string>
+    <string name="rentedItem">El artículo ha sido alquilado</string>
+    <string name="notRentedItem">El artículo todavía está disponible</string>
+</resources>
