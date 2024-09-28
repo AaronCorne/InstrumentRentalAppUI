@@ -1,12 +1,18 @@
 package com.example.assignment2rentwithintent
 
 import android.content.Intent
+import android.view.View
+import android.widget.SeekBar
 import androidx.test.core.app.ActivityScenario
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.espresso.Espresso.onView
+import androidx.test.espresso.UiController
+import androidx.test.espresso.ViewAction
 import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.action.ViewActions.swipeRight
 import androidx.test.espresso.assertion.ViewAssertions.matches
+import androidx.test.espresso.matcher.RootMatchers.isSystemAlertWindow
+import androidx.test.espresso.matcher.ViewMatchers.isAssignableFrom
 import androidx.test.espresso.matcher.ViewMatchers.isDisplayed
 import androidx.test.espresso.matcher.ViewMatchers.isEnabled
 import androidx.test.espresso.matcher.ViewMatchers.withId
@@ -78,6 +84,36 @@ class SecondActivityTest {
         onView(withId(R.id.rechargeN)).check(matches(not(isDisplayed())))
     }
 
+    @Test
+    fun testSeekBarUpdatesRentDuration() {
+        val testInstrument = MusicalEquipment("Test Instrument", true, 4.5f, 250, R.drawable.guitar, R.drawable.bookedgtar, "Test description", true)
+        val intent = Intent(ApplicationProvider.getApplicationContext(), SecondActivity::class.java).apply {
+            putExtra("Instrument", testInstrument)
+            putExtra("totalCredits", 500)
+        }
+        ActivityScenario.launch<SecondActivity>(intent)
+
+
+        onView(withId(R.id.rentTime)).check(matches(withText("1 month")))
+
+        val rentDurations = listOf("1 month", "3 months", "6 months", "9 months", "12 months")
+        for (i in rentDurations.indices) {
+            onView(withId(R.id.rent)).perform(setProgress(i))
+            onView(withId(R.id.rentTime)).check(matches(withText(rentDurations[i])))
+        }
+    }
+
+    // Helper function to set SeekBar progress
+    private fun setProgress(progress: Int): ViewAction {
+        return object : ViewAction {
+            override fun getConstraints() = isAssignableFrom(SeekBar::class.java)
+            override fun getDescription() = "Set SeekBar progress to $progress"
+            override fun perform(uiController: UiController, view: View) {
+                (view as SeekBar).progress = progress
+                uiController.loopMainThreadUntilIdle()
+            }
+        }
+    }
 
 
 
