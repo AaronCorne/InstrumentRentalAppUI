@@ -35,13 +35,13 @@
       <SelectionState runConfigName="testSavingWithInsufficientCredits()">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
-      <SelectionState runConfigName="testDetailsPass()">
-        <option name="selectionMode" value="DROPDOWN" />
-      </SelectionState>
       <SelectionState runConfigName="testRechargeYesUpdatesCreditsAndHidesOptions()">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
       <SelectionState runConfigName="testCheckboxToast()">
+        <option name="selectionMode" value="DROPDOWN" />
+      </SelectionState>
+      <SelectionState runConfigName="testSeekBarUpdatesRentDuration()">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
     </selectionStates>
